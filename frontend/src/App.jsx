@@ -12,7 +12,7 @@ const App = ({ message }) => {
   return (
     <div>
       {loading && (
-        <div className="loader-parent m-3 bg-gray-100">
+        <div className="loader-parent">
           <div className="loader"></div>
         </div>
       )}
