@@ -5,9 +5,9 @@ const Message = require("../models/messagesModel");
 const { dot } = require("node:test/reporters");
 
 router.post("/message", async (req, res) => {
-  const { subject, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-  if (!subject || !email || !message) {
+  if (!name || !message) {
     return res
       .status(400)
       .send({ success: false, message: "All fields are required" });
@@ -15,7 +15,7 @@ router.post("/message", async (req, res) => {
 
   try {
     const newMessage = new Message({
-      subject,
+      name,
       email,
       message,
       approved: false,

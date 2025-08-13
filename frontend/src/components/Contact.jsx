@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 
 function Contact() {
-  const [subject, setSubject] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const ADMIN_KEY = import.meta.env.VITE_REVIEW_KEY;
@@ -17,7 +17,7 @@ function Contact() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/user/message`,
-        { subject, email, message },
+        { name, email, message },
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -26,7 +26,7 @@ function Contact() {
         toast.success(
           "Message sent. The admin will contact you shortly via Email"
         );
-        setSubject("");
+        setName("");
         setEmail("");
         setMessage("");
         navigate("/");
@@ -114,28 +114,27 @@ function Contact() {
             </h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="subject" className="block mb-1 font-medium">
-                 Subject: 
+                <label htmlFor="name" className="block mb-1 font-medium">
+                 Name: 
                 </label>
                 <input
                   type="text"
-                  id="subject"
-                  name="subject"
+                  id="name"
+                  name="name"
                   required
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block mb-1 font-medium">
-                  Email:
+                  Email (Optional):
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"

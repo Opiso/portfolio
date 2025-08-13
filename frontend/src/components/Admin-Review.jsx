@@ -50,7 +50,7 @@ function AdminReview() {
           className="sticky top-0 bg-gray-100 flex justify-between items-center py-2 px-4 shadow z-10"
         >
           {/* Breadcrumbs */}
-          <ol className="flex space-x-2 text-sm text-gray-600">
+          <ol className="flex space-x-0 text-sm text-gray-600">
             <li>
               <a href="/" className="hover:underline text-blue-600 hover:text-blue-800">
                 Back 
@@ -58,11 +58,12 @@ function AdminReview() {
               <span className="mx-1">/</span>
             </li>
             <li className="text-gray-500" aria-current="page">
-              Feedbacks
+              Pending Feedbacks
             </li>
           </ol>
         </nav>
       </div>
+      <div className="p-3">
       <h2 className="text-2xl font-bold mb-4">Pending Messages</h2>
       {messages.length === 0 ? (
         <div>No pending messages</div>
@@ -71,10 +72,10 @@ function AdminReview() {
           {messages.map((msg) => (
             <div key={msg._id} className="bg-white p-4 mb-4 shadow rounded">
               <p>
-                <strong>From:</strong> {msg.email}
+                <strong>From:</strong> {msg.name}
               </p>
               <p>
-                <strong>Subject:</strong> {msg.subject}
+                <strong>Email:</strong> {msg.email}
               </p>
               <p>
                 <strong>Message:</strong> {msg.message}
@@ -89,6 +90,7 @@ function AdminReview() {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

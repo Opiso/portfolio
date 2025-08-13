@@ -12,14 +12,14 @@ const Feedbacks = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 p-10">
       <div>
         <nav
           aria-label="breadcrumb"
           className="sticky top-0 bg-gray-100 flex justify-between items-center py-2 px-4 shadow z-10"
         >
           {/* Breadcrumbs */}
-          <ol className="flex space-x-2 text-sm text-gray-600">
+          <ol className="flex space-x-0 text-sm text-gray-600">
             <li>
               <a href="/" className="hover:underline text-blue-600 hover:text-blue-800">
                 Back 
@@ -32,7 +32,7 @@ const Feedbacks = () => {
           </ol>
         </nav>
       </div>
-      <div className="p-10" id="feedbacks">
+      <div className="p-3" id="feedbacks">
         <h2 className="text-2xl font-bold mb-4">Feedbacks</h2>
         {messages.length === 0 ? (
           <p>No feedback yet.</p>
@@ -40,10 +40,10 @@ const Feedbacks = () => {
           messages.map((msg) => (
             <div key={msg._id} className="bg-white p-4 mb-4 shadow rounded">
               <p>
-                <strong>From:</strong> {msg.email}
+                <strong>From:</strong> {msg.name}
               </p>
               <p>
-                <strong>Subject:</strong> {msg.subject}
+                <strong>Email:</strong> {msg.email}
               </p>
               <p>
                 <strong>Message:</strong> {msg.message}

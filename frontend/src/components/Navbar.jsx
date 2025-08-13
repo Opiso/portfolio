@@ -125,7 +125,7 @@ const Navbar = () => {
               style={{ borderRadius: "50%" }}
             />
           </div>
-          <p className="p-3 mt-4 text-white">Capis Otieno</p>
+          <p className="p-3 mt-0 text-white">Capis Otieno</p>
           <div className="flex justify-center">
             {" "}
             <hr className="text-white w-[50%] " />

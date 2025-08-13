@@ -9,3 +9,33 @@
 button{
     cursor: pointer;
 }
+
+@keyframes expand {
+  0% {
+    transform: scale(1); 
+  }
+  50% {
+    transform: scale(1.1); 
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button-expand {
+  animation: expand 1.5s ease-in-out infinite;
+  display: inline-block;
+  padding: 20px 24px;
+  background-color: #292727;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.button-expand:hover {
+  background-color: #111111;
+  cursor: pointer;
+}
