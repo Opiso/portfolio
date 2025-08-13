@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Portfolio from "../../src/assets/portfolio.JPG";
-import Wellpoint from "../../src/assets/wellpoint.jpg";
-import Blogsite from "../../src/assets/blogsite.jpg";
-import Poncho from "../../src/assets/poncho.jpg";
+import Wellpoint from "../../src/assets/wellpoint.JPG";
+import Blogsite from "../../src/assets/blogsite.JPG";
+import Poncho from "../../src/assets/poncho.JPG";
 
 function Projects() {
   const [isExpanded1, setIsExpanded1] = useState(false);
