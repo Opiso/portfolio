@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { FaWhatsapp, FaGithub, FaLinkedin } from "react-icons/fa";
 import Background from "../../src/assets/bg_pic.jpg";
 import axios from "axios";
-import toast from "react-hot-toast";
-import {useNavigate} from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -23,9 +23,9 @@ function Contact() {
         }
       );
       if (response.data.success) {
-        toast.success(
-          "Message sent. The admin will contact you shortly via Email"
-        );
+        toast.success("Message sent. Thank you for your feedback", {
+          duration: 10000,
+        });
         setName("");
         setEmail("");
         setMessage("");
@@ -82,7 +82,7 @@ function Contact() {
                     href="https://wa.me/+254706641957/?text=Capis+Here,+thank+you"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-green-300 hover:text-green-600"
+                    className="text-green-300 hover:text-green-600 relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:border-b-2 after:border-green-600 after:opacity-0 hover:after:opacity-100 after:transition-all after:duration-[1000ms]"
                   >
                     <FaWhatsapp />{" "}
                   </a>
@@ -90,7 +90,7 @@ function Contact() {
                     href="https://www.linkedin.com/in/capis-otieno-506526332/"
                     target="_blank"
                     rel="noreferrer"
-                    className=" text-blue-700 hover:text-blue-900"
+                    className="text-blue-700 hover:text-blue-900 relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:border-b-2 after:border-blue-900 after:opacity-0 hover:after:opacity-100 after:transition-all after:duration-[1000ms]"
                   >
                     <FaLinkedin />
                   </a>
@@ -98,7 +98,7 @@ function Contact() {
                     href="https://github.com/Opiso"
                     target="_blank"
                     rel="noreferrer"
-                    className=" text-gray-700 hover:text-gray-900"
+                    className="text-gray-700 hover:text-gray-900 relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:border-b-2 after:border-gray-900 after:opacity-0 hover:after:opacity-100 after:transition-all after:duration-[1000ms]"
                   >
                     <FaGithub />
                   </a>
@@ -115,7 +115,7 @@ function Contact() {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block mb-1 font-medium">
-                 Name: 
+                  Name:
                 </label>
                 <input
                   type="text"

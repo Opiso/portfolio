@@ -116,7 +116,7 @@ const Navbar = () => {
   return (
     <div className="bg-green-800 mb-3">
       <div className="row">
-        <div className="row1 text-center p-0" ref={row1Ref}>
+        <div className="row1 text-center" ref={row1Ref}>
           <div className=" flex justify-center items-center text-center">
             <img
               className="mt-1 w-[15%] aspect-square object-cover rounded-full "
@@ -125,7 +125,7 @@ const Navbar = () => {
               style={{ borderRadius: "50%" }}
             />
           </div>
-          <p className="p-3 mt-0 text-white">Capis Otieno</p>
+          <p className="p-3 text-white">Capis Otieno</p>
           <div className="flex justify-center">
             {" "}
             <hr className="text-white w-[50%] " />
