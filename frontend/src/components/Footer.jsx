@@ -5,10 +5,8 @@ function Footer() {
   return (
     <footer className="bg-gray-900 text-white px-6 py-8">
       <div className="max-w-6xl mx-auto text-center">
-        {/* Logo / Name */}
         <div className="text-xl font-semibold mb-4">I am Capis Otieno</div>
 
-        {/* Navigation Links */}
         <nav className="flex flex-col md:flex-row flex-wrap md:justify-center items-center gap-4 mb-6 text-sm text-gray-300">
           <a
             href="#navbar"

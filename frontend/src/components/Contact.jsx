@@ -4,6 +4,8 @@ import Background from "../../src/assets/bg_pic.jpg";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -11,10 +13,12 @@ function Contact() {
   const [message, setMessage] = useState("");
   const ADMIN_KEY = import.meta.env.VITE_REVIEW_KEY;
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(showLoading());
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/user/message`,
         { name, email, message },
@@ -22,6 +26,7 @@ function Contact() {
           headers: { "Content-Type": "application/json" },
         }
       );
+      dispatch(hideLoading());
       if (response.data.success) {
         toast.success("Message sent. Thank you for your feedback", {
           duration: 10000,
@@ -34,6 +39,7 @@ function Contact() {
         toast.error(response.data.message || "Something went wrong");
       }
     } catch (err) {
+      dispatch(hideLoading());
       toast.error("Failed to contact admin");
     }
   };

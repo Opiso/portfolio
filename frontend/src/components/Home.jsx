@@ -9,17 +9,23 @@ import Experience from "./Experience";
 import Projects from "./Projects";
 import Footer from "./Footer";
 import AdminReview from "./Admin-Review";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 const Home = () => {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchHomepage = async () => {
       try {
+        dispatch(showLoading());
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/`);
+        dispatch(hideLoading());
         setMessage(response.data);
       } catch (err) {
+        dispatch(hideLoading());
         console.error("Fetch failed", err);
         setError(true);
       }

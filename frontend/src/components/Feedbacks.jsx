@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "./Navbar";
+import { useDispatch } from 'react-redux';
+import { showLoading, hideLoading } from "../redux/alertsSlice";
+
 
 const Feedbacks = () => {
   const [messages, setMessages] = useState([]);
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
+    dispatch(showLoading());
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/user/message/approved`)
       .then((res) => setMessages(res.data.data))
       .catch(console.error);
+      dispatch(hideLoading());
+
   }, []);
 
   return (
