@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 const ADMIN_KEY = import.meta.env.VITE_REVIEW_KEY;
 
 function AdminReview() {
+  const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [searchParams] = useSearchParams();
   const accessKey = searchParams.get("key");
@@ -16,6 +19,7 @@ function AdminReview() {
       toast.error("Unauthorized Access");
       return;
     }
+    dispatch(showLoading());
     axios
       .get(
         `${
@@ -24,6 +28,7 @@ function AdminReview() {
       )
       .then((res) => setMessages(res.data.data))
       .catch(console.error);
+      dispatch(hideLoading());
   }, [accessKey]);
   if (accessKey !== ADMIN_KEY) {
     return (

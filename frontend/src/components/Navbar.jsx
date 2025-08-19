@@ -131,7 +131,7 @@ const Navbar = () => {
             <hr className="text-white w-[50%] " />
           </div>
           <div className="text-center mt-4 text-gray-300">
-            SOFTWARE | NETWORKS | ELECTRICAL ENGINEERING
+            SOFTWARE DEV | TELECOMS | NETWORKS | ELECTRICAL & ELECTRONICS
           </div>
         </div>
         <div
