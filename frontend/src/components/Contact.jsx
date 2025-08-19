@@ -14,7 +14,7 @@ function Contact() {
   const ADMIN_KEY = import.meta.env.VITE_REVIEW_KEY;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,18 +29,20 @@ function Contact() {
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success("Message sent. Thank you for your feedback", {
-          duration: 10000,
+          duration: 5000,
         });
         setName("");
         setEmail("");
         setMessage("");
         navigate("/");
       } else {
-        toast.error(response.data.message || "Something went wrong");
+        toast.error(response.data.message || "Something went wrong", {
+          duration: 2000,
+        });
       }
     } catch (err) {
       dispatch(hideLoading());
-      toast.error("Failed to contact admin");
+      toast.error("Failed to contact admin", { duration: 2000 });
     }
   };
   return (

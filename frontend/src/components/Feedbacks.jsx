@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
-
 
 const Feedbacks = () => {
   const [messages, setMessages] = useState([]);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    dispatch(showLoading());
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/api/user/message/approved`)
-      .then((res) => setMessages(res.data.data))
-      .catch(console.error);
-      dispatch(hideLoading());
+    const fetchData = async () => {
+      try {
+        dispatch(showLoading());
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/user/message/approved`
+        );
+        setMessages(res.data.data);
+      } catch (err) {
+        console.error;
+      } finally {
+        dispatch(hideLoading());
+      }
+    };
 
+    fetchData();
   }, []);
 
   return (
@@ -29,8 +35,11 @@ const Feedbacks = () => {
           {/* Breadcrumbs */}
           <ol className="flex space-x-0 text-sm text-gray-600">
             <li>
-              <a href="/" className="hover:underline text-blue-600 hover:text-blue-800">
-                Back 
+              <a
+                href="/"
+                className="hover:underline text-blue-600 hover:text-blue-800"
+              >
+                Back
               </a>
               <span className="mx-1">/</span>
             </li>

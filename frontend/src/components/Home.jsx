@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
-import { Route, Routes } from "react-router-dom";
 import About from "./About";
 import Contact from "./Contact";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import Projects from "./Projects";
 import Footer from "./Footer";
-import AdminReview from "./Admin-Review";
 import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 

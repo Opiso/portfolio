@@ -19,16 +19,22 @@ function AdminReview() {
       toast.error("Unauthorized Access");
       return;
     }
-    dispatch(showLoading());
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/api/user/message/pending?key=${ADMIN_KEY}`
-      )
-      .then((res) => setMessages(res.data.data))
-      .catch(console.error);
-      dispatch(hideLoading());
+    const fetchData = async () => {
+      try {
+        dispatch(showLoading());
+        const res = await axios.get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/api/user/message/pending?key=${ADMIN_KEY}`
+        );
+        setMessages(res.data.data);
+      } catch (err) {
+        console.error;
+      } finally {
+        dispatch(hideLoading());
+      }
+    };
+    fetchData();
   }, [accessKey]);
   if (accessKey !== ADMIN_KEY) {
     return (
@@ -49,7 +55,7 @@ function AdminReview() {
 
   return (
     <div className="bg-gray-100 p-10" id="admin-review">
-           <div >
+      <div>
         <nav
           aria-label="breadcrumb"
           className="sticky top-0 bg-gray-100 flex justify-between items-center py-2 px-4 shadow z-10"
@@ -57,8 +63,11 @@ function AdminReview() {
           {/* Breadcrumbs */}
           <ol className="flex space-x-0 text-sm text-gray-600">
             <li>
-              <a href="/" className="hover:underline text-blue-600 hover:text-blue-800">
-                Back 
+              <a
+                href="/"
+                className="hover:underline text-blue-600 hover:text-blue-800"
+              >
+                Back
               </a>
               <span className="mx-1">/</span>
             </li>
@@ -69,32 +78,32 @@ function AdminReview() {
         </nav>
       </div>
       <div className="p-3">
-      <h2 className="text-2xl font-bold mb-4">Pending Messages</h2>
-      {messages.length === 0 ? (
-        <div>No pending messages</div>
-      ) : (
-        <div>
-          {messages.map((msg) => (
-            <div key={msg._id} className="bg-white p-4 mb-4 shadow rounded">
-              <p>
-                <strong>From:</strong> {msg.name}
-              </p>
-              <p>
-                <strong>Email:</strong> {msg.email}
-              </p>
-              <p>
-                <strong>Message:</strong> {msg.message}
-              </p>
-              <button
-                onClick={() => approveMessage(msg._id)}
-                className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-800"
-              >
-                Approve
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+        <h2 className="text-2xl font-bold mb-4">Pending Messages</h2>
+        {messages.length === 0 ? (
+          <div>No pending messages</div>
+        ) : (
+          <div>
+            {messages.map((msg) => (
+              <div key={msg._id} className="bg-white p-4 mb-4 shadow rounded">
+                <p>
+                  <strong>From:</strong> {msg.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {msg.email}
+                </p>
+                <p>
+                  <strong>Message:</strong> {msg.message}
+                </p>
+                <button
+                  onClick={() => approveMessage(msg._id)}
+                  className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-800"
+                >
+                  Approve
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
